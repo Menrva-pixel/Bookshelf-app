@@ -82,47 +82,45 @@ const addBookHandler = (request, h) => {
   return response;
 };
 
-
-const books = [
-  { id: 1, name: 'Book 1', publisher: 'Publisher 1', reading: 1, finished: 0 },
-  { id: 2, name: 'Book 2', publisher: 'Publisher 2', reading: 0, finished: 1 },
-  { id: 3, name: 'Book 3', publisher: 'Publisher 3', reading: 1, finished: 1 }
-];
-
+// Fungsi handler untuk mendapatkan semua buku berdasarkan parameter query
 const getAllBooksHandler = (request, h) => {
-  const {
-      name,
-      reading,
-      finished
-  } = request.query;
+    const {
+        name,
+        reading,
+        finished
+    } = request.query;
 
-  let filteredBooks = books;
+    let filteredBooks = books;
 
-  if (name) {
-      filteredBooks = books.filter((bn) => bn.name.toLowerCase().includes(name.toLowerCase()));
-  }
+    // Saring buku berdasarkan nama jika parameter kueri nama disediakan
+    if (name) {
+        filteredBooks = books.filter((bn) => bn.name.toLowerCase().includes(name.toLowerCase()));
+    }
 
-  if (reading) {
-      filteredBooks = books.filter((book) => Number(book.reading) === Number(reading));
-  }
+    // Saring buku berdasarkan status membaca jika parameter kueri pembacaan disediakan
+    if (reading) {
+        filteredBooks = books.filter((book) => Number(book.reading) === Number(reading));
+    }
 
-  if (finished) {
-      filteredBooks = books.filter((book) => Number(book.finished) === Number(finished));
-  }
+    // Saring buku berdasarkan status selesai jika parameter kueri selesai disediakan
+    if (finished) {
+        filteredBooks = books.filter((book) => Number(book.finished) === Number(finished));
+    }
+    
+    // Siapkan objek respons dengan data buku yang difilter
+    const response = h.response({
+        status: 'success',
+        data: {
+            books: filteredBooks.map((book) => ({
+                id: book.id,
+                name: book.name,
+                publisher: book.publisher
+            }))
+        }
+    });
 
-  const response = h.response({
-      status: 'success',
-      data: {
-          books: filteredBooks.map((book) => ({
-              id: book.id,
-              name: book.name,
-              publisher: book.publisher
-          }))
-      }
-  });
-
-  response.code(200);
-  return response;
+    response.code(200);
+    return response;
 };
 
 const getBookByIdHandler = (request, h) => {
