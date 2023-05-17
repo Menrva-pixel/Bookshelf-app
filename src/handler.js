@@ -33,18 +33,7 @@ const addBookHandler = (request, h) => {
   const finished = pageCount === readPage;
 
   const newBook = {
-    id,
-    name,
-    year,
-    author,
-    summary,
-    publisher,
-    pageCount,
-    readPage,
-    finished,
-    reading,
-    insertedAt,
-    updatedAt,
+    id, name, year, author, summary, publisher, pageCount, readPage, finished, reading, insertedAt, updatedAt,
   };
 
   books.push(newBook);
@@ -169,17 +158,7 @@ const editBookByIdHandler = (request, h) => {
     const finished = pageCount === readPage;
 
     books[index] = {
-      ...books[index],
-      name,
-      year,
-      author,
-      summary,
-      publisher,
-      pageCount,
-      readPage,
-      finished,
-      reading,
-      updatedAt,
+      ...books[index], name, year, author, summary, publisher, pageCount, readPage, finished, reading, updatedAt,
     };
 
     // Buku berhasil diperbarui
@@ -227,9 +206,5 @@ const deleteBookByIdHandler = (request, h) => {
 };
 
 module.exports = {
-  addBookHandler,
-  getAllBooksHandler,
-  getBookByIdHandler,
-  editBookByIdHandler,
-  deleteBookByIdHandler,
+  addBookHandler, getAllBooksHandler, getBookByIdHandler, editBookByIdHandler, deleteBookByIdHandler,
 };
