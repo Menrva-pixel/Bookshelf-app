@@ -13,7 +13,7 @@ const addBookHandler = (request, h) => {
     reading,
   } = request.payload;
 
-  // Periksa apakah properti 'nama' tidak ada di badan permintaan
+  // Periksa apakah properti 'nama' tidak ada di request body
   if (!name) {
     const response = h.response({
       status: 'fail',
@@ -78,7 +78,7 @@ const addBookHandler = (request, h) => {
     message: 'Buku gagal ditambahkan',
   });
 
-  response.code(500);
+  response.code(404);
   return response;
 };
 
@@ -106,7 +106,7 @@ const getAllBooksHandler = (request, h) => {
     if (finished) {
         filteredBooks = books.filter((book) => Number(book.finished) === Number(finished));
     }
-    
+
     // Siapkan objek respons dengan data buku yang difilter
     const response = h.response({
         status: 'success',
@@ -163,7 +163,7 @@ const editBookByIdHandler = (request, h) => {
   const updatedAt = new Date().toISOString();
   const index = books.findIndex((book) => book.id === id);
 
-  // Periksa apakah properti 'nama' tidak ada di body request
+  // Periksa apakah properti 'nama' tidak ada di request body
   if (!name) {
     const response = h.response({
       status: 'fail',
