@@ -82,6 +82,13 @@ const addBookHandler = (request, h) => {
   return response;
 };
 
+
+const books = [
+  { id: 1, name: 'Book 1', publisher: 'Publisher 1', reading: 1, finished: 0 },
+  { id: 2, name: 'Book 2', publisher: 'Publisher 2', reading: 0, finished: 1 },
+  { id: 3, name: 'Book 3', publisher: 'Publisher 3', reading: 1, finished: 1 }
+];
+
 const getAllBooksHandler = (request, h) => {
   const {
       name,
