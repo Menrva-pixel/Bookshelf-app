@@ -8,30 +8,25 @@ const routes = [{
   path: '/books',
   handler: addBookHandler,
 },
-// Semua Buku
+// Mendapatkan Semua Buku Berdasarkan ID
 {
   method: 'GET',
   path: '/books',
   handler: getAllBooksHandler,
-  query: {
-    name: { type: 'string', caseInsensitive: true, optional: true },
-    reading: { type: 'number', optional: true },
-    finished: { type: 'number', optional: true },
-  },
 },
-// Buku By Id
+// Mendapatkan Buku Berdasarkan ID
 {
   method: 'GET',
   path: '/books/{id}',
   handler: getBookByIdHandler,
 },
-// Edit Buku
+// Edit Buku Berdasarkan ID
 {
   method: 'PUT',
   path: '/books/{id}',
   handler: editBookByIdHandler,
 },
-// Hapus Buku
+// Hapus Buku Berdasarkan ID
 {
   method: 'DELETE',
   path: '/books/{id}',
